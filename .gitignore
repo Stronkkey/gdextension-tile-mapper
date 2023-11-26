@@ -11,6 +11,7 @@
 
 .cache
 *.json
+demo
 
 # Precompiled Headers
 *.gch
