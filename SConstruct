@@ -18,14 +18,14 @@ sources = Glob("src/*.cpp")
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(
-        "bin/extension.{}.{}.framework/libgdexample.{}.{}".format(
+        "bin/tile_mapper.{}.{}.framework/libgdexample.{}.{}".format(
             env["platform"], env["target"], env["platform"], env["target"]
         ),
         source=sources,
     )
 else:
     library = env.SharedLibrary(
-        "bin/extension{}".format(env["SHLIBSUFFIX"]),
+        "bin/tile_mapper{}".format(env["SHLIBSUFFIX"]),
         source=sources,
     )
 

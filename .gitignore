@@ -5,7 +5,12 @@
 *.slo
 *.lo
 *.o
+*.os
+*.so
 *.obj
+
+.cache
+*.json
 
 # Precompiled Headers
 *.gch
