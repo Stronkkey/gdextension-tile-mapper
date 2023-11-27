@@ -64,6 +64,7 @@ private:
   void _set_cell_to_use_canvas_item_cell(CellData *cell_data);
   void _set_cell_to_use_quadrant(CellData *cell_data, Quadrant *quadrant);
   void _set_cell_transform(CellData *cell_data, const Transform2D &new_transform);
+  void _general_cell_update(CellData *cell_data);
 
   RID _get_draw_rid_from_cell_data(CellData *cell_data) const;
   CellDrawState _get_cell_draw_state(CellData *cell_data) const;

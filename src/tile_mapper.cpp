@@ -97,7 +97,7 @@ RID TileMapper::_create_cell_body_for_layer(CellData *cell_data, int32_t layer) 
     shapes.push_back(shape);
     shape_datas.push_back(shape_data);
   }
-
+  UtilityFunctions::print(shapes.size());
   if (shapes.empty()) {
     return RID();
   }
@@ -127,7 +127,7 @@ RID TileMapper::_create_cell_body_for_layer(CellData *cell_data, int32_t layer) 
     physics_server2d->body_set_param(body, PhysicsServer2D::BODY_PARAM_BOUNCE, material->get_bounce());
     physics_server2d->body_set_param(body, PhysicsServer2D::BODY_PARAM_FRICTION, material->get_friction());
   }
-  UtilityFunctions::print("Body");
+
   return body;
 }
 
@@ -272,6 +272,20 @@ void TileMapper::_set_cell_transform(CellData *cell_data, const Transform2D &new
 
   for (int64_t i = 0; i < cell_data->physics_bodies_rid.size(); i++)
     PhysicsServer2D::get_singleton()->body_set_state(cell_data->physics_bodies_rid[i], PhysicsServer2D::BODY_STATE_TRANSFORM, cell_data->transform);
+}
+
+void TileMapper::_general_cell_update(CellData *cell_data) {
+  switch (_get_cell_draw_state(cell_data)) {
+    CANVAS_ITEM:
+      _draw_tile(cell_data);
+      _update_canvas_item_cell(cell_data);
+      break;
+    QUADRANT:
+      _draw_quadrant(cell_data->current_quadrant);
+      break;
+    default:
+      break;
+  }
 }
 
 void TileMapper::_set_cell_to_use_quadrant(CellData *cell_data, Quadrant *quadrant) {
